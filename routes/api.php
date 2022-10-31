@@ -18,11 +18,12 @@ use Illuminate\Support\Facades\Route;
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-Route::get('/users/',[\App\Http\Controllers\UserController::class,'index']);
+
 Route::middleware('auth:sanctum')->group(function (){
 
     Route::delete('/logout',[\App\Http\Controllers\LoginController::class,'destroy']);
 
+    Route::get('/users/',[\App\Http\Controllers\UserController::class,'index']);
     Route::get('/users/{user}',[\App\Http\Controllers\UserController::class,'show']);
 
 
@@ -47,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function (){
         Route::get('/',[\App\Http\Controllers\VenueController::class,'index']);
         Route::get('/{venue}',[\App\Http\Controllers\VenueController::class,'show']);
         Route::post('/store',[\App\Http\Controllers\VenueController::class,'store']);
+        Route::patch('/{venue}',[\App\Http\Controllers\VenueController::class,'update']);
 
 
     });
